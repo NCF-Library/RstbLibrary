@@ -38,7 +38,7 @@ internal readonly ref struct RstbHeader
         }
     }
 
-    public RstbHeader(Span<byte> data, Endianness endian)
+    public RstbHeader(ReadOnlySpan<byte> data, Endianness endian)
     {
         _magic = data[0..4];
 

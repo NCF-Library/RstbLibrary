@@ -1,13 +1,11 @@
 ﻿using RstbLibrary.Core;
-using System.Runtime.InteropServices.Marshalling;
 using System.Text.Json;
 
 namespace RstbLibrary;
 
-public enum Endianness : byte
+public enum Endianness
 {
-    Big,
-    Little,
+    Big, Little
 }
 
 public class RSTB
@@ -15,7 +13,7 @@ public class RSTB
     public Dictionary<uint, uint> CrcMap { get; set; } = new();
     public Dictionary<string, uint> NameMap { get; set; } = new();
 
-    public static RSTB FromBinary(Span<byte> data, Endianness endian)
+    public static RSTB FromBinary(ReadOnlySpan<byte> data, Endianness endian)
     {
         RSTB rstb = new();
         RstbHeader header = new(data, endian);
@@ -57,7 +55,7 @@ public class RSTB
 
         foreach ((string name, uint size) in NameMap) {
             RstbNameTableEntry.Write(name, size, data, writeOffset, endian);
-            writeOffset += 132;
+            writeOffset += 132; // sizeof(RstbNameTableEntry)
         }
 
         return data;

@@ -34,9 +34,9 @@ public ref struct RstbNameTableEntry
         }
     }
 
-    public RstbNameTableEntry(Span<byte> data, int offset, Endianness endian)
+    public RstbNameTableEntry(ReadOnlySpan<byte> data, int offset, Endianness endian)
     {
-        Span<byte> sub = data[offset..];
+        ReadOnlySpan<byte> sub = data[offset..];
         name = sub[0..128];
         size = endian == Endianness.Big
             ? BinaryPrimitives.ReadUInt32BigEndian(sub[128..132])

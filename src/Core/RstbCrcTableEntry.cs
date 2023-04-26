@@ -22,9 +22,9 @@ public struct RstbCrcTableEntry
         }
     }
 
-    public RstbCrcTableEntry(Span<byte> data, int offset, Endianness endian)
+    public RstbCrcTableEntry(ReadOnlySpan<byte> data, int offset, Endianness endian)
     {
-        Span<byte> sub = data[offset..];
+        ReadOnlySpan<byte> sub = data[offset..];
         if (endian == Endianness.Big) {
             hash = BinaryPrimitives.ReadUInt32BigEndian(sub[0..4]);
             size = BinaryPrimitives.ReadUInt32BigEndian(sub[4..8]);
