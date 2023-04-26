@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace RstbLibrary.Calculate;
+namespace RstbLibrary.Calculations;
 
 internal static class Info
 {
